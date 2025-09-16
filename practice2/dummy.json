@@ -1,0 +1,3 @@
+[{"name":"John","age":30,"city":"New York","education":[10,12,"graduation","postgrad"]},
+{"name":"Rajesh","age":36,"city":"New Delhi","education":[10,12]},
+{"name":"Shyam","age":26,"city":"Jaipur","education":[10,12,"graduation"]}]
