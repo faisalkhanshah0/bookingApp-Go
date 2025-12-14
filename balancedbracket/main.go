@@ -2,43 +2,53 @@ package main
 
 import (
 	"fmt"
-	"strings"
-	// "slices"
+	"slices"
 )
 
-func main (){
+func main() {
 
+	// {{[}]}
+	// {[]{}}
+	// {[]{[}]}
+	// 12123210
 
-// {{[}]}
-// {[]{}}
-// {[]{[}]}
-// 12123210 
+	inputString := "{[]{}}()"
 
-inputString :=  "{[]{}}()"
-
-// setOfBraces := map[string]string{
-// 	'(': ')',
-// 	'{': '}',
-// 	'[': ']',
-// }
-
-// arropen :=  []string {"(","{","["}
-// arrclose :=  []string {"}","}","]"}
-
-for _, k := range inputString {
-	fmt.Println(k)
-	ch := fmt.Sprintf("%c",k)
-	fmt.Println(ch)
-	if(strings.Contains(inputString, ch)){
-		fmt.Println("found")
-	} else{
-		fmt.Println("not found")
+	setOfBraces := map[string]string{
+		"(": ")",
+		"{": "}",
+		"[": "]",
+		")": "(",
+		"}": "{",
+		"]": "[",
 	}
-	
-}
 
+	// arr1 = append(arr1, 1, 2, 3, 4, 5)
+	// arr1 = slices.Delete(arr1, 1, 3)
+	// arr1 = slices.Insert(arr1, 1, 2, 3)
+	// fmt.Println(arr1)
 
+	arr := []string{}
+	for _, k := range inputString {
+		ch := fmt.Sprintf("%c", k)
 
+		if ch == "(" || ch == "{" || ch == "[" {
+			fmt.Println("open : ", ch)
+			arr = append(arr, ch)
+		} else {
+			if setOfBraces[ch] == arr[len(arr)-1] {
+				fmt.Println("bf arr", arr, " got : ", ch, " cancelling", setOfBraces[ch], " arr len:", len(arr))
+				arr = slices.Delete(arr, len(arr)-1, len(arr))
+				fmt.Println("af arr", arr)
+			}
 
+		}
+	}
+
+	if len(arr) == 0 {
+		fmt.Println("True")
+	} else {
+		fmt.Println("False")
+	}
 
 }
